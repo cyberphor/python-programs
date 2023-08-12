@@ -25,9 +25,9 @@ def main(data):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--data")
+    parser.add_argument("-d")
     args = parser.parse_args()
-    main(args.data)
+    main(args.d)
 
 """
 1 becomes 11

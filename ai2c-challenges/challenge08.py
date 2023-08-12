@@ -1,47 +1,46 @@
-import string
+from argparse import ArgumentParser
+from string import ascii_lowercase, ascii_uppercase, digits, punctuation
 
-def get_wordlist(path: str, min_length: int, max_length: int):
-    word_list = []
-    with open(path, "r") as input_file:
-        for word in given_file:
-            wordlength = [len(c) for c in word.split()][0]
-            if wordlength >= minlength and word_length < max_length:
+def get_common_words(word_list_path: str, min_word_len: int = 3, max_word_len: int = 6) -> list:
+    common_words = []
+    with open(word_list_path, "r") as word_list:
+        for word in word_list:
+            word_length = [len(c) for c in word.split()][0]
+            if word_length >= min_word_len and word_length < max_word_len:
                 common_words.append(word.rstrip())
     return common_words
 
-def contains_real_words(wordlist, sentence) -> bool:
+def contains_common_words(common_words: list, sentence: str) -> bool:
     counter = 0
-    sentence = version.split()
-    for word in sentence:
+    for word in sentence.split():
         if counter >= 2:
-            print(version)
+            return True
         else:
             if word in common_words:
                 counter += 1
-    
 
-def solution(data: any, min_length: int = 3, max_length: int = 6):
+def solution(data: any):
     versions = []
-    upper = string.ascii_uppercase
-    lower = string.ascii_lowercase
-    digits = string.digits
-    punctuation = string.punctuation + " "
-    common_words = get_common_words(path = "common_words.txt", min_length = 3, max_length = 6)
-    for n in range(26):
+    common_words = get_common_words(word_list_path = "common_words.txt")
+    for n in range(len(ascii_lowercase)):
         version = []
-        for l in data:
-            if l in punctuation or l in digits:
-                version.append(l)
+        for c in data:
+            if c in punctuation or c == " " or c in digits:
+                version.append(c)
             else:
-                if l.isupper():                    
-                    shift = upper.index(l) - n
-                    version.append(upper[shift])    
+                if c.isupper():    
+                    shift = ascii_uppercase.index(c) - n
+                    version.append(ascii_uppercase[shift])
                 else:
-                    shift = lower.index(l) - n
-                    version.append(lower[shift]) 
+                    shift = ascii_lowercase.index(c) - n
+                    version.append(ascii_lowercase[shift]) 
         versions.append("".join(version))
     for version in versions:
-        contains_real_words(version)
+        if contains_common_words(common_words = common_words, sentence = version):
+            print(version)
 
-challenge = 'Wylkpjapvu pz clyf kpmmpjbsa, lzwljphssf hivba aol mbabyl. - Uplsz Ivoy'
-solution(challenge)
+if __name__ == "__main__":
+    parser = ArgumentParser()
+    parser.add_argument("-d")
+    args = parser.parse_args()
+    solution(args.d)
