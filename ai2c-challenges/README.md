@@ -11,3 +11,9 @@ Someone wanted to play a joke on the incoming scholars on their first day at Bak
 - `vv^^^^` should result in floor 2
 - `^^vvvv` should result in floor -2
 - `^^VA0vvvv` should result in floor -2
+
+### Challenge 10
+Visualize a scatter plot the perfect square roots of 1 through 100.
+
+### Challenge 11
+Add first 10 triangle numbers of last scatter plot to scatter plot. 
