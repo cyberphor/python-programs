@@ -1,22 +1,22 @@
-import pandas as pd
+from pandas import DataFrame
 
-columns = ["tweet_id", "content"]
-tweets = [
-    [1, "Vote for Biden"],
-    [1, "Let us make America great again!"],
-]
+def create_dataset() -> DataFrame:
+    columns = ["tweet_id", "content"]
+    rows = [
+        [1, "Vote for Biden"],
+        [2, "Let us make America great again!"]
+    ]
+    dataframe = DataFrame(columns = columns, data = rows)
+    return dataframe
 
-df = pd.DataFrame(columns = columns, data = tweets)
-invalid = df.loc[df['content'].str.len() < 15]
-invalid[["tweet_id"]]
+def solution(dataset: DataFrame) -> DataFrame:
+    # apply the "len" function against the "content" column
+    # return data where the length is longer than 15 characters
+    # locate data with the dataset where this is true
+    # return the header and value of this data
+    return dataset.loc[dataset["content"].apply(len) > 15][["tweet_id"]]
 
-"""
-| tweet_id | content                          |
-| -------- | -------------------------------- |
-| 1        | Vote for Biden                   |
-| 2        | Let us make America great again! |
-"""
-
-"""
-return tweets.loc[tweets['content'].str.len() > 15][["tweet_id"]]
-"""
+if __name__ == "__main__":
+    dataset = create_dataset()
+    answer = solution(dataset)
+    print(answer)

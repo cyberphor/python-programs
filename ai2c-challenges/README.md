@@ -17,3 +17,28 @@ Visualize a scatter plot the perfect square roots of 1 through 100.
 
 ### Challenge 11
 Add first 10 triangle numbers of last scatter plot to scatter plot. 
+
+### Challenge 12
+Implement the "bisection method" (i.e., find the square root of a function) and solve for the following:
+```
+a = 0
+b = 3
+def f(x)
+    e = cos(x) - 0.5
+    return e
+max_iters = 100
+answer = 2.3349609
+```
+
+The Bisection Method
+1. Start with an interval [a, b] that contains a root (i.e., the function changes sign)
+2. Compute the midpoint 
+3. If the function at c is zero then,
+    c is the solution and the algorithim stops
+4. Else the solution must be within the interval
+    If the function at a and c have opposite signs,
+        the root is within [a, c]
+    If the function at c and b have opposite signs
+        the root is within [c, b]
+5. Repeat with the new interval
+6. Stop once a pre-defined number of interations
